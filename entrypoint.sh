@@ -8,7 +8,7 @@ curl_sh(){
   sh -c "curl -sL https://github.com/cc332030$1 | sh -s -- $parameter"
 }
 
-$1
+sh -c "$1"
 
 if [ "$SSH_PRIVATE_KEY" ]; then
   curl_sh /linux/raw/master/script/init-ssh/init-ssh-pre.sh
