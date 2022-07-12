@@ -1,7 +1,6 @@
 FROM node:16-alpine
 
-RUN apt update && \
-    apt install -y \
+RUN apk add --no-cache \
       openssh-client \
       curl
 
