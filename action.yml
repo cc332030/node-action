@@ -1,0 +1,19 @@
+
+name: 'Node Action'
+
+description: 'Action for Node.'
+
+branding:
+  icon: 'loader'
+  color: 'orange'
+
+inputs:
+  command:
+    description: 'node command.'
+    required: true
+
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+  args:
+    - ${{ inputs.command }}
