@@ -1,0 +1,42 @@
+
+name: node
+
+on:
+  workflow_call:
+    secrets:
+      SSH_PRIVATE_KEY:
+        required: false
+      HOST:
+        required: false
+      PORT:
+        required: false
+      ORIGIN_PATH:
+        required: false
+      REMOTE_PATH:
+        required: false
+      PREPARE_COMMAND:
+        required: false
+      ACTION_COMMAND:
+        required: false
+    inputs:
+      command:
+        required: true
+        type: string
+
+jobs:
+  node:
+    name: node
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: cc332030/node-action@main
+        env:
+          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+          HOST: ${{ secrets.HOST }}
+          PORT: ${{ secrets.PORT }}
+          ORIGIN_PATH: ${{ secrets.ORIGIN_PATH }}
+          REMOTE_PATH: ${{ secrets.REMOTE_PATH }}
+          PREPARE_COMMAND: ${{ secrets.PREPARE_COMMAND }}
+          ACTION_COMMAND: ${{ secrets.ACTION_COMMAND }}
+        with:
+          command: ${{ inputs.command }}

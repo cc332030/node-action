@@ -1,0 +1,24 @@
+
+name: deploy
+
+on:
+  push:
+    branches:
+      - "*"
+    tags-ignore:
+      - "*"
+  pull_request:
+    branches:
+      - "*"
+
+jobs:
+  node:
+    uses: cc332030/node/.github/workflows/node.yml@master
+    secrets:
+      SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+      HOST: ${{ secrets.HOST }}
+      PORT: ${{ secrets.PORT }}
+      ORIGIN_PATH: build
+      REMOTE_PATH: /home/program/dl-proxy/static
+    with:
+      command: npm i && npm run build
