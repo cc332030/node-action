@@ -18,3 +18,9 @@ fi
 if [ "$HOST" ] && [ "$PORT" ]; then
   curl_sh /linux/raw/master/script/deploy/deploy.sh
 fi
+
+
+
+if [ "$SSH_PRIVATE_KEY" ]; then
+  curl_sh /linux/raw/master/script/init-ssh/clean-ssh.sh
+fi
